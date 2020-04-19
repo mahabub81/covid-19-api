@@ -108,7 +108,7 @@ async function writeAllFiles() {
             console.log("Write file for Country: " + countryCode);
         }
 
-        await writeFile(fileWritePath + '/' + 'counties.json', countriesData.sort((a, b) => a.country_region < b.country_region ? -1 : a.country_region > b.country_region ? 1 : 0));
+        await writeFile(fileWritePath + '/' + 'countries.json', countriesData.sort((a, b) => a.country_region < b.country_region ? -1 : a.country_region > b.country_region ? 1 : 0));
         await writeFile(fileWritePath + '/' + 'world-summary.json', worldData);
         console.log("===>", "We are done with processing");
 
