@@ -1,0 +1,5 @@
+.idea/
+data-generator/node_modules/
+api-data/
+data-generator/package-lock.json
+data-generator/config/isocountries.ts
