@@ -1,8 +1,16 @@
 version: '3.7'
 services:
-  #core:
-    #image: nginx:1.14
-    #container_name: Covid19_Nginx
+  covid19_api_nginx:
+    container_name: covid19_api_nginx
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - "./../docs:/public_html"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:rw"
+      - "./nginx/conf.d/:/etc/nginx/conf.d/:rw"
+
   covid19_data_parser:
     container_name: covid19_data_parser
     environment:
