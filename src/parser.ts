@@ -229,12 +229,13 @@ async function processFiles(files: object) {
     let postgressHost = process.env.POSTGRESS_HOST || '';
     let mysqlHost = process.env.MYSQL_HOST || '';
 
+
     if (postgressHost != '') {
         insertPostGress = true;
         try {
             await PgSQLQueryModel.query("TRUNCATE " + appConfig.tableName, []);
         } catch (e) {
-            console.log("Cant empty table exit");
+            console.log("Cant empty table exit-->", postgressHost);
             process.exit()
         }
     }
@@ -244,7 +245,7 @@ async function processFiles(files: object) {
         try {
             await MySQLQueryModel.query("TRUNCATE " + appConfig.tableName, []);
         } catch (e) {
-            console.log("Cant empty table exit");
+            console.log("Cant empty table exit==>", postgressHost);
             process.exit()
         }
     }

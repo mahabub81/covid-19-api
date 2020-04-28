@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  covid19_api_nginx:
+    container_name: covid19_api_nginx
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - "./../docs:/public_html"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:rw"
+      - "./nginx/conf.d/:/etc/nginx/conf.d/:rw"

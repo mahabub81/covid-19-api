@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  covid19_data_parser:
+    container_name: covid19_data_parser
+    restart: unless-stopped
+    environment:
+      CLONE_PATH: ${CLONE_PATH}
+      LOG_PATH: ${LOG_PATH}
+      FILE_WRITE_PATH: ${FILE_WRITE_PATH}
+      SRC_DIR: ${SRC_DIR}
+      ENV_DIR: ${ENV_DIR}
+    build:
+      context: ./../
+      dockerfile: ./docker/data-parser/Dockerfile
+      args:
+        GIT_URL: "${GIT_URL}"
+        CLONE_PATH: ${CLONE_PATH}
+        LOG_DIR: ${LOG_DIR}
+        LOG_PATH: ${LOG_PATH}
+        FILE_WRITE_PATH: ${FILE_WRITE_PATH}
+        SRC_DIR: ${SRC_DIR}
+        ENV_DIR: ${ENV_DIR}
+    volumes:
+      - "./../docs:/docs"
+
+
+

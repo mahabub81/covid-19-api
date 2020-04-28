@@ -13,6 +13,7 @@ services:
 
   covid19_data_parser:
     container_name: covid19_data_parser
+    restart: unless-stopped
     environment:
       CLONE_PATH: ${CLONE_PATH}
       LOG_PATH: ${LOG_PATH}
@@ -47,7 +48,6 @@ services:
     volumes:
     - "./../docs:/docs"
 
-
   covid19_mysql:
     image: mysql:5.7
     container_name: covid19_mysql
@@ -55,7 +55,7 @@ services:
     volumes:
       - "./db/data/mysql:/var/lib/mysql"
       - ./db/structure/mysql.sql:/docker-entrypoint-initdb.d/mysql.sql:ro
-    restart: always
+    restart: unless-stopped
     ports:
       - "3306:3306"
     environment:
@@ -67,6 +67,7 @@ services:
   covid19_postgress:
     image: postgres:11.6
     container_name: covid19_postgress
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
