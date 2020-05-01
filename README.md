@@ -10,7 +10,7 @@ Data dump for MySQL and Postgres database also available.
 #### Post man Collection URL:
 [https://documenter.getpostman.com/view/3629958/SzmZc13E?version=latest](https://documenter.getpostman.com/view/3629958/SzmZc13E?version=latest)
 
-Also, you can download the JSON from this repo. [directory: ./docs/api/v1/]
+Also, you can download the **Postman Collection** JSON from this repo. [**Directory:** _docs/api/v1/COVID-19-API.postman_collection.json_ ]
 
 
 We have the following types of converted JSON data. 
