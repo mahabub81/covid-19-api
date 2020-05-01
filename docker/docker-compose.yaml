@@ -31,11 +31,12 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+
     build:
       context: ./../
       dockerfile: ./docker/data-parser/Dockerfile
       args:
-        GIT_URL: "${GIT_URL}"
+        GIT_URL: ${GIT_URL}
         CLONE_PATH: ${CLONE_PATH}
         LOG_DIR: ${LOG_DIR}
         LOG_PATH: ${LOG_PATH}
