@@ -1,4 +1,4 @@
-#COVID-19-API
+# COVID-19-API
 
 We Convert the [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) university git repo CSV data in JSON format. We have a script which runs every hour to get the updated information from the source repo  [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) and convert to JSON format. It also inserts the data into MySQL and Postgres Database. 
 
