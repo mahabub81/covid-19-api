@@ -4,7 +4,13 @@ We Convert the [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) unive
 
 > **Still working on to set up the automated process to commit hourly**
 
-Data dump for MySQL and Postgres database also available. Also, have a plan to create **Postman Collection**. So anyone can use it efficiently.
+
+Data dump for MySQL and Postgres database also available. 
+
+#### Post man Collection URL:
+[https://documenter.getpostman.com/view/3629958/SzmZc13E?version=latest](https://documenter.getpostman.com/view/3629958/SzmZc13E?version=latest)
+
+Also, you can download the JSON from this repo. [directory: ./docs/api/v1/]
 
 
 We have the following types of converted JSON data. 

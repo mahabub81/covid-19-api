@@ -14,6 +14,7 @@ update_everything() {
     cd $SRC_DIR
     ## Run the node js app
     /usr/bin/npm run parser
+    /usr/bin/npm run postman
 }
 
 
