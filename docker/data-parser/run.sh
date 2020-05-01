@@ -26,6 +26,7 @@ fi
 
 ## Goto Git Local repo Path
 cd $CLONE_PATH
+git remote update
 UPSTREAM='origin/master'
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")

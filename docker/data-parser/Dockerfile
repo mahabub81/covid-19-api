@@ -33,7 +33,7 @@ RUN touch ${LOG_PATH}
 
 RUN mkdir -p ${CLONE_PATH}
 RUN mkdir -p ${FILE_WRITE_PATH}
-RUN git clone ${GIT_URL}  ${CLONE_PATH}
+RUN git clone ${GIT_URL}  ${CLONE_PATH}  --progress --verbose
 
 
 RUN mkdir -p ${ENV_DIR}
