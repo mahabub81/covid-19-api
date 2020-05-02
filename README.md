@@ -99,7 +99,7 @@ We can directly access the JSON data from ***mahabub81.github.io***, please see 
 ## Database Dump
 MySQL and Postgres Database dump is also available. The table name is **covid19_daywise_data**, you can import the dump and use it.
 
-MySQL dump: [https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dymp/covid19_daywise_data.sql](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dymp/covid19_daywise_data.sql)
+MySQL dump: [https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dump/covid19_daywise_data.sql](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dump/covid19_daywise_data.sql)
 
 Postgres dump: [https://github.com/mahabub81/covid-19-api/blob/master/covid-19-postgres-dump/covid19_daywise_data.sql](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-postgres-dump/covid19_daywise_data.sql)
 
