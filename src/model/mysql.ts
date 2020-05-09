@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const db = require('../db-connection/mysql');
 
 export default class MySQLQuery {

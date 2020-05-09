@@ -1,3 +1,7 @@
 .idea/
 docker/db/data/
 src/node_modules
+commit.sh
+docs/api/v1/sha
+
+docs/api/v1/hash/

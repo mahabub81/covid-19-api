@@ -1,6 +1,9 @@
 
 const config = {
     tableName: 'covid19_daywise_data',
+    fileWritePath:  process.env.FILE_WRITE_PATH,
+    gitRepo: process.env.GIT_REPO || '',
+    dateFormat: 'YYYY-MM-DD',
     mysqldb: {
         user: process.env.MYSQL_USER || '',
         database: process.env.MYSQL_DATABASE || '',

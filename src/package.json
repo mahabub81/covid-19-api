@@ -6,7 +6,9 @@
   "scripts": {
     "test": "ts-node test.ts",
     "parser": "ts-node parser.ts",
-    "postman": "ts-node postman.ts"
+    "postman": "ts-node postman.ts",
+    "api": "ts-node api-creator.ts",
+    "db": "ts-node db-generator.ts"
   },
   "keywords": [
     "covid-19",
@@ -28,6 +30,7 @@
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
     "mysqljs": "0.0.2-security",
+    "node-fetch": "^2.6.0",
     "pg": "^8.0.3",
     "request": "^2.88.2",
     "scramjet": "^4.28.5",

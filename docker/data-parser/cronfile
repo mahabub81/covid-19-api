@@ -1,4 +1,5 @@
-*/10 * * * *  root sh /run.sh  >> log_path 2>&1
+*/7 * * * *  root sh /bash/cron-bash.sh api | xargs -L 1 echo "api---> $1"   >> /covid-19/log/cron.log 2>&1
+0 * * * *  root sh /bash/cron-bash.sh db | xargs -L 1 echo "db--> $1"  >> /covid-19/log/cron.log 2>&1
 
 
 

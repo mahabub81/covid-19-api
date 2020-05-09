@@ -88,6 +88,7 @@ let insertPostGress = false;
  */
 glob(csvDirectory, {}, function (er, files) {
     processFiles(files).then(function () {
+        process.exit();
         // write specific Country Files
         writeAllFiles().then(function () {
             console.log("Done Everything");
@@ -258,6 +259,7 @@ async function processFiles(files: object) {
 
     // process every file
     for (let [index, path] of Object.entries(files)) {
+        console.log("processing ==>", path);
         // stream.write(path + "\n");
         let date: string = path.split('/').pop().split('.')[0];
         let fileData = await parseCSVFileFromPath(path);
@@ -519,7 +521,7 @@ async function parseCSVFileFromPath(filePath: string) {
 
 
 /**
- *
+ * 4b0be88fa6c81869a3292c943be2614d4d2f7154
  * @param URL
  */
 async function parseCSVFileFromURL(URL: string) {
