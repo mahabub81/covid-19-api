@@ -1,5 +1,5 @@
 
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER mahabub@solvease.com
 
 ARG LOG_DIR
