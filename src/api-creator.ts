@@ -89,7 +89,7 @@ function processCountryCases(casesCountry, casesState) {
                     let stateDetails = getCountryStateByUID(state.uid);
                     if (typeof stateDetails !== 'undefined') {
                         if (state.iso3 === 'USA') {
-                            stateDetails.path = 'states/US/' + prepareStateNameToPath(stateDetails.province_state)
+                            stateDetails.path = 'states/US/' + prepareStateNameToPath(stateDetails.province_state) + '.json'
                         }
                         stateDetails['latest'] = tidyCountryStateRecords(state);
                         countries[state.iso3]['states'].push(stateDetails);
@@ -277,3 +277,4 @@ async function startProcess() {
         process.exit();
     }
 })();
+

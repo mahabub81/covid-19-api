@@ -132,7 +132,7 @@ async function prepareCountries() {
                     }
                 }
                 let tempState = JSON.parse(itemJson);
-                tempState.name = stateDetails.name;
+                tempState.name = stateDetails.province_state;
                 tempState.request.url.raw = tempState.request.url.raw + '/' + stateDetails.path;
                 tempState.request.url.path.push('states');
                 tempState.request.url.path.push(countryDetails.iso2.toUpperCase());
@@ -176,5 +176,6 @@ export async function createPostmanCollection() {
         throw Error(e);
     }
 }
+
 
 
