@@ -4,7 +4,10 @@
   "description": "covid19 api example",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "world-summary": "node world-summary.js",
+    "world-time-series": "node world-time-series.js",
+    "us-states-list": "node us-states.js",
+    "latest": "node countries-latest.js"
   },
   "keywords": [
     "covid19",
