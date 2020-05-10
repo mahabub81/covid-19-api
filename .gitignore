@@ -5,3 +5,4 @@ commit.sh
 docs/api/v1/sha
 
 docs/api/v1/hash/
+example/nodejs/node_modules/
