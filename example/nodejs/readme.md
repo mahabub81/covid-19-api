@@ -1,7 +1,7 @@
 
 # Node Example
 
-Clone this repo, run the following command
+ Run the following command to clone this repo and run the examples
 
 ```bash
 git clone https://github.com/mahabub81/covid-19-api.git 
@@ -9,7 +9,7 @@ cd ./covid-19-api/example/nodejs
 npm install
 ```
 
-## example
+## Example
 
 run the following commands and you can see different output based on the script
 ```javascript
@@ -18,6 +18,10 @@ npm run world-summary
 npm run latest
 ```
 
+**See example javascript files.**
+
+
+## Example code
 ```javascript
 const fetch = require('node-fetch');  
   
