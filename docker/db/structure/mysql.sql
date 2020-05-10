@@ -1,7 +1,9 @@
 
 
 DROP TABLE IF EXISTS `covid19`.`covid19_daywise_data`;
-CREATE TABLE  `covid19`.`covid19_daywise_data` (
+
+
+create table `covid19`.covid19_daywise_data
 (
     id                  int auto_increment
         primary key,
@@ -22,9 +24,11 @@ CREATE TABLE  `covid19`.`covid19_daywise_data` (
 );
 
 create index covid19_daywise_data_country_code_iso2_index
-    on `covid19`.`covid19_daywise_data` (country_code_iso2);
+    on covid19_daywise_data (country_code_iso2);
 
 create index covid19_daywise_data_record_date_index
-    on `covid19`.`covid19_daywise_data` (record_date);
+    on covid19_daywise_data (record_date);
+
+
 
 
