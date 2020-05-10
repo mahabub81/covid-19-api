@@ -1,186 +1,108 @@
+
 # COVID-19-API
-
-We Convert the [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) university git repo CSV data in JSON format. We have a script which runs every hour to get the updated information from the source repo  [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) and convert to JSON format. It also inserts the data into MySQL and Postgres Database. 
-
-> **Still working on to set up the automated process to commit hourly**
+We are using [Johns Hopkins](https://github.com/CSSEGISandData/COVID-19) university COVID-19 git repo as source data and converting it into **JSON** and **SQL** dump. We have scripts which run periodically to update data in this repository.  
 
 
-Data dump for MySQL and Postgres database also available. 
+ ## Usage
+Base path for **COVID-19-API** is *https://mahabub81.github.io/covid-19-api/api/v1*.
 
-#### Post man Collection URL:
-[https://documenter.getpostman.com/view/3629958/SzmZc13E?version=latest](https://documenter.getpostman.com/view/3629958/SzmZc13E?version=latest)
+We have the following endpoints 
 
-Also, you can download the **Postman Collection** JSON from this repo. [**Directory:** _docs/api/v1/COVID-19-API.postman_collection.json_ ]
+ 1. World summary ([https://mahabub81.github.io/covid-19-api/api/v1/world-summary.json](https://mahabub81.github.io/covid-19-api/api/v1/world-summary.json))
+ 2. World summary time series ([https://mahabub81.github.io/covid-19-api/api/v1/world-summary-time-series.json](https://mahabub81.github.io/covid-19-api/api/v1/world-summary-time-series.json))
+ 3. Countries and their latest update ([https://mahabub81.github.io/covid-19-api/api/v1/countries.json](https://mahabub81.github.io/covid-19-api/api/v1/countries.json))
+ 4. Time series for all countries,  separate endpoint for each country by country ISO code  ( [Bangladesh](https://mahabub81.github.io/covid-19-api/api/v1/countries/BD.json), [USA](https://mahabub81.github.io/covid-19-api/api/v1/countries/US.json), [China](https://mahabub81.github.io/covid-19-api/api/v1/countries/CN.json), [India](https://mahabub81.github.io/covid-19-api/api/v1/countries/IN.json) and others country )
+ 6. Time Series for only USA states ([New York,](https://mahabub81.github.io/covid-19-api/api/v1/states/US/new-york.json) [Florida](https://mahabub81.github.io/covid-19-api/api/v1/states/US/florida.json) and other US states) 
 
-
-We have the following types of converted JSON data. 
-
-1. [World summary.](https://mahabub81.github.io/covid-19-api/api/v1/world-summary.json)  (**File**: *docs/v1/api/world-summary.json*)
-2. [List of countries data available and updated COVID-19 data for those countries.](https://mahabub81.github.io/covid-19-api/api/v1/countries.json) (**File**: *docs/v1/api/countries.json*)
-
-3. Specific [Country COVID-19 data](https://mahabub81.github.io/covid-19-api/api/v1/countries/BD.json) by country ISO CODE.
-  (**Available countries**: *docs/v1/api/countries/*)
-4. Available [states COVID-19 data](https://mahabub81.github.io/covid-19-api/api/v1/states/US/arizona.json) for a specific country.  (**Available States**: *docs/v1/api/states/country_iso_code*)  
-
-
-
-This codebase has the following use case.
-
-1. I want to access the JSON data/API only. 
-2. I would like to use the database dump only. 
-3. I want to run it on our server
-    * I only want to serve JSON Data / Rest API from our server.
-    * I want to run the data converter on our server.
-    * I want to run the data converter and also like to add to the database server (MySQL / Postgres).
-
-    
-## Access JSON data / API only
-We can directly access the JSON data from ***mahabub81.github.io***, please see the below pattern
-
-1. World summary [https://mahabub81.github.io/covid-19-api/api/v1/world-summary.json](https://mahabub81.github.io/covid-19-api/api/v1/world-summary.json)
-2. Available Countries and Their lastest update [https://mahabub81.github.io/covid-19-api/api/v1/countries.json](https://mahabub81.github.io/covid-19-api/api/v1/countries.json)
-3. Specific country details time series, Access it by Country Code (Example: BD, US, AU, IN) Example URLS:
-	[https://mahabub81.github.io/covid-19-api/api/v1/countries/BD.json](https://mahabub81.github.io/covid-19-api/api/v1/countries/BD.json)
-	
-	[https://mahabub81.github.io/covid-19-api/api/v1/countries/IN.json](https://mahabub81.github.io/covid-19-api/api/v1/countries/IN.json)
-	
-	[https://mahabub81.github.io/covid-19-api/api/v1/countries/US.json](https://mahabub81.github.io/covid-19-api/api/v1/countries/US.json)
-	
-4. By States, States data are not available for all countries, in available **countries.json**, we give an example which countries have states and their relative path. 
-  
+**Javascript Code example for world summary**
+``` javascript
+const fetch = require('node-fetch');  
+fetch('https://mahabub81.github.io/covid-19-api/api/v1/world-summary.json')  
+    .then(res => res.json())  
+    .then(json => console.log(json));
 ```
- {
-    "uid": "36",
-    "iso2": "AU",
-    "iso3": "AUS",
-    "code3": "36",
-    "fips": "",
-    "admin2": "",
-    "province_state": "",
-    "country_region": "Australia",
-    "lat": "-25",
-    "long_": "133",
-    "combined_key": "Australia",
-    "population": "25459700",
-    "latest": {
-      "confirmed": 6752,
-      "deaths": 91,
-      "recovered": 5715,
-      "active": 946,
-      "date": "2020-04-29",
-      "last_updated_at": "2020-04-30 02:32:27"
-    },
-    "states": [
-      {
-        "lat": "-33.8688",
-        "long_": "151.2093",
-        "combined_key": "New South Wales, Australia",
-        "population": "8118000",
-        "name": "New South Wales",
-        "path": "states/AU/new-south-wales.json",
-        "latest": {
-          "confirmed": 3016,
-          "deaths": 40,
-          "recovered": 2284,
-          "active": 692,
-          "date": "2020-04-29",
-          "last_updated_at": "2020-04-30 02:32:27"
-        }
-      },
+**output**
+```javascript
+{
+  last_update: '2020-05-10 09:32:31',
+  confirmed: 4040289,
+  deaths: 279565,
+  recovered: 1380716,
+  active: 2395111
+}
 ```
- So Example URL For **New South Wales, Australia** is
- 
- [https://mahabub81.github.io/covid-19-api/api/v1/states/AU/new-south-wales.json](https://mahabub81.github.io/covid-19-api/api/v1/states/AU/new-south-wales.json)
->  The pattern is:  states/Country_Code/state-name.json 
-
-### Example Code
-> **Still working on example code, Please let me know if you want to contribute example code on any language and/or any changes**
-
-## Database Dump
-MySQL and Postgres Database dump is also available. The table name is **covid19_daywise_data**, you can import the dump and use it.
-
-MySQL dump: [https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dump/covid19_daywise_data.sql](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dump/covid19_daywise_data.sql)
-
-Postgres dump: [https://github.com/mahabub81/covid-19-api/blob/master/covid-19-postgres-dump/covid19_daywise_data.sql](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-postgres-dump/covid19_daywise_data.sql)
-
-
-
-
-
-> **Still working on some example query for both MySQL and Postgres**
-
-## Serve JSON Data from your server
-Make sure docker already installed in the server. Clone the repo **[covid-19-api](https://github.com/mahabub81/covid-19-api)** and go to docker folder and run docker-compose up command using only-nginx yaml file. 
-
+**Example for specific country recent update**
+```javascript
+const fetch = require('node-fetch');  
+fetch('https://mahabub81.github.io/covid-19-api/api/v1/countries.json')  
+    .then(res => res.json())  
+    .then(json => console.log(json.find(country => ( country.iso2.toLowerCase() == 'bd'))));
 ```
-version: '3.7'
-services:
-  covid19_api_nginx:
-    container_name: covid19_api_nginx
-    image: nginx:latest
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    volumes:
-      - "./../docs:/public_html"
-      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:rw"
-      - "./nginx/conf.d/:/etc/nginx/conf.d/:rw"
-``` 
-
-
-#####Commands:
+**output**
+```javascript
+{
+  uid: '50',
+  iso2: 'BD',
+  iso3: 'BGD',
+  code3: '50',
+  fips: '',
+  admin2: '',
+  province_state: '',
+  country_region: 'Bangladesh',
+  lat: '23.685',
+  long_: '90.3563',
+  combined_key: 'Bangladesh',
+  population: '164689383',
+  latest: {
+    last_updated_at: '2020-05-10',
+    confirmed: 14657,
+    deaths: 228,
+    recovered: 2650,
+    active: 11779,
+    incident_rate: '8.899784389865617',
+    people_tested: '',
+    people_hospitalized: '',
+    mortality_rate: '1.5555707170635191'
+  },
+  states: []
+}
 ```
+
+
+> **Working on more examples.** 
+
+## SQL dump
+MySQL and Postgres dump available, we update the dump periodically while there is an update in source repo. Dump updates are less frequent than the JSON data. 
+
+ 1. [MySQL](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-mysql-dump/covid19_daywise_data.sql) 
+ 2. [Postgres](https://github.com/mahabub81/covid-19-api/blob/master/covid-19-postgres-dump/covid19_daywise_data.sql)
+
+> **Working in SQL Example**
+
+
+## Postman collection
+Postman collection:  [https://documenter.getpostman.com/view/3629958/SzmfYHVh](https://documenter.getpostman.com/view/3629958/SzmfYHVh)
+
+## Run in your server
+To run the projects in your server clone this git repo and go to docker folder. Based on your need you can choose  specific docker-compose file. 
+
+```bash
 git clone https://github.com/mahabub81/covid-19-api.git 
 cd ./covid-19-api/docker
-docker-compose  -f only-nginx.yaml up -d 
-```
-
-This will run only nginx on port 80. Change configuration according to your needs. Then you can access the files from below URLs, URLs can be changed based on your base domain.
-
-[http://localhost/api/v1/world-summary.json](http://localhost/api/v1/world-summary.json)
-
-[http://localhost/api/v1/countries.json](http://localhost/api/v1/countries.json)
-
-[http://localhost/api/v1/countries/BD.json](http://localhost/api/v1/countries/BD.json)
-
-
-
-> **Set a scheduler to get updated json files from the repo.**
-
-## Run the data converter
-Clone the repo and go to docker folder and run command docker-compose up using only-parser yaml file. We prepare a TypeScript file to convert **Johns Hopkins** University repo data to JSON files. Source of the script is in ./src directory. 
-
-All configurations are within Dockerfile, it will automatically check the updated data every hour and prepare JSON files according.
-
-#####Commands:
-```
-git clone https://github.com/mahabub81/covid-19-api.git 
-cd ./covid-19-api/docker
-docker-compose  -f only-parser.yaml up -d 
-```
-
-### Insert data into the Database [MySQL / Postgres]
-
-We can use the following environment variable in docker-compose file to add data into the database. The database can be existing one or you can spin up a new database using our docker-compose file. 
-
-> Check all the docker-compose files.
-
-
-##### database config in docker-compose file.
-```
-# MYSQL
-MYSQL_HOST: ${MYSQL_HOST}
-MYSQL_DATABASE: ${MYSQL_DATABASE}
-MYSQL_USER: ${MYSQL_USER}
-MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-MYSQL_PORT: ${MYSQL_PORT}
-
-# POSTGRES
-POSTGRESS_HOST: ${POSTGRESS_HOST}
-POSTGRES_USER: ${POSTGRES_USER}
-POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-POSTGRES_DB: ${POSTGRES_DB}
+# run the complete project
+docker-compose up -d
+#Run Only nginx comment the above line and uncomment the below line
+#docker-compose  -f only-nginx.yaml up -d 
+# run only the data parser```
+#docker-compose  -f only-parser.yaml up -d 
 ```
 
 
 
+## Contributing
+Pull requests are always welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
